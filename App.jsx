@@ -465,7 +465,30 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      {!isLoading ? <CenturionLegionLoader /> : <Route isFatch={route} />}
+      {!isLoading ? (
+      <View style={{ flex: 1, overflow: 'hidden' }}>
+          {/* Контейнер шириною у 2 * screenWidth: два зображення поруч */}
+          <Animated.View
+            style={{
+              flexDirection: 'row',
+              width: screenWidth * 2,
+              height: '100%',
+              transform: [{ translateX: slideAnim }],
+            }}
+          >
+            <Image
+              style={{ width: screenWidth, height: '100%' }}
+              source={require('./assets/images/1.png')}
+              resizeMode="cover"
+            />
+            <Image
+              style={{ width: screenWidth, height: '100%' }}
+              source={require('./assets/images/2.png')}
+              resizeMode="cover"
+            />
+          </Animated.View>
+        </View>
+      ) : <Route isFatch={route} />}
     </NavigationContainer>
   );
 };
